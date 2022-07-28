@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 下面这里要改 -->
+<mapper namespace="com.example.mapper.UsersMapper">
+    <!--设置domain类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致，此处一定要！
+        下面这里要改-->
+    <resultMap id="BaseUsers" type="com.example.entity.User">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+    </resultMap>
+    <!-- 查询所有记录 -->
+    <select id="selectAllUsers" resultMap="BaseUsers">
+        SELECT * FROM user
+    </select>
+    <!-- 查询单个记录 -->
+    <select id="selectUserByUsername" parameterType="java.lang.String"  resultMap="BaseUsers">
+        SELECT *  FROM user WHERE username=#{username}
+    </select>
+
+</mapper>
